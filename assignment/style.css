@@ -1,0 +1,15 @@
+body{
+    background-color: #b7c4df;
+    background-image: url(record.png);
+    background-size: 100px;
+    font-family: 'Courier New', Courier, monospace;
+}
+h1{
+    background-color: #a796e2;
+}
+h2{
+    background-color: #7991c5;
+}
+h3{
+background-color: #a796e2;
+}
