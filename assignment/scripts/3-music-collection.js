@@ -17,7 +17,7 @@ let shrekThreeTrackDurations = ['2:28', '3:51', '2:25', '4:39', '3:13', '3:01', 
 let fetchTheBoltCuttersTracks = ['I Want You To Love Me', 'Shameika', 'Fetch The Bolt Cutters', 'Under The Table', 'Relay', 'Rack of His', 'Newspaper', 'Ladies'];
 let fetchTheBoltCuttersDurations = ['3:58', '4:09', '4:59', '3:21', '4:49', '3:42', '5:33', '5:25'];
 
-let gallowsTracks = ['Hopes Up', ' Forever\'s Gone', 'Barely Friends', ' Billy', ' Walk Away', ' Fuck Dave', 'Low Tide', 'Falling'];
+let gallowsTracks = ['Hopes Up', ' Forever\'s Gone', 'Barely Friends', 'Billy', ' Walk Away', ' Fuck Dave', 'Low Tide', 'Falling'];
 let gallowsDurations = ['3:27', '3:48', '3:57', '3:31', '4:19', '3:44', '3:48', '3:35'];
 
 let theLionsRoarTracks = ['The lion\'s Roar', ' Emmylou', 'In the Hearts of Men', 'Blue', 'This Old Routine', ' To a Poet', 'I Found a Way', ' Dance to Another Tune'];
@@ -73,20 +73,37 @@ showCollection(collection);
 
 // Add a function named findByArtist. This function should:
 // Take in artist (a string) parameter
+
+
+// Stretch goals
+// Create a function called search. This function should:
+
+
+// Create your solution based on a search object that has these properties:
+// { artist: 'Ray Charles', year: 1957 }
+// The returned output from search should meet these requirements:
+// Return a new array of all items in the collection matching all of the search criteria.
+// If no results are found, return an empty array.
+// If there is no search object or an empty search object provided as input, then return all albums in the collection.
+// Add an array of tracks to your album objects. Each track should have a name and duration. You will need to update the functions to support this new property:
+
+// Take an input parameter for a search criteria object. 
+
+
 let stretchObjectOne = {
     artist: null,
     yearPublished: null,
     track: null,
 }
 let stretchObjectTwo = {
-    artist: 'Dreamworks',
-    yearPublished: 2004,
+    artist: 'Fiona Apple',
+    yearPublished: 2020,
     track: null
 }
 let stretchObjectThree = {
-    artist: 'Dreamworks',
-    yearPublished: null,
-    track: 'Accidentally in Love'
+    artist: 'DRAMA',
+    yearPublished: 2016,
+    track: 'Billy'
 }
 let stretchObjectFour = {
     artist: 'Dreamworks',
@@ -94,12 +111,13 @@ let stretchObjectFour = {
     track: null
 }
 let stretchObjectFive = {
-    artist: null,
+    artist: 232,
     yearPublished: null,
-    track: 'Accidentally in Love'
+    track: 'Kickapoo'
 }
 
-
+/////   THIS STRETCH GOAL FUNCTION WORKS EXCEPT WHEN THERE ARE MULTIPLE MATCHES
+////    Any ideas?
 function stretchSearchGoalOne(collection, objectSearch) {
     // Create an array to hold any results, empty to start
     let stretchAlbumFound = [];
@@ -115,19 +133,20 @@ function stretchSearchGoalOne(collection, objectSearch) {
     for (let i = 0; i < collection.length; i++) {
         if (objectSearch.artist === collection[i].artist &&
             objectSearch.yearPublished === collection[i].yearPublished) {
-            console.log('test1');
             for (let j = 0; j < collection.length; j++) {
 
                 if (objectSearch.track === collection[i].track[j]) {
 
                     count++;
-                    console.log(count, 'exact match found. album found matching search: ', collection[i].title);
+                    stretchAlbumFound.push(collection[i]);
+                    console.log(count, 'exact match found. album found matching search: ', stretchAlbumFound);
                     return collection;
                 }
                 else if (!objectSearch.track) {
 
                     count++;
-                    console.log(count, ' match found. album found matching search: ', collection[i].title);
+                    stretchAlbumFound.push(collection[i]);
+                    console.log(count, ' match found. album found matching search: ', stretchAlbumFound);
                     return collection;
                 }
             }
@@ -135,12 +154,20 @@ function stretchSearchGoalOne(collection, objectSearch) {
 
         else if (!objectSearch.artist &&
             objectSearch.yearPublished === collection[1].yearPublished) {
-            console.log('test2');
             for (let j = 0; j < collection.length; j++) {
 
-                if (objectSearch.track === collection[i].track[j] || !objectSearch.track) {
+                if (objectSearch.track === collection[i].track[j]) {
+
                     count++;
-                    console.log(count, ' match found. album found matching search: ', collection[i].title);
+                    stretchAlbumFound.push(collection[i]);
+                    console.log(count, ' match found. album found matching search: ', stretchAlbumFound);
+                    return collection;
+                }
+                else if (!objectSearch.track) {
+
+                    count++;
+                    stretchAlbumFound.push(collection[i]);
+                    console.log(count, ' match found. album found matching search: ', stretchAlbumFound);
                     return collection;
                 }
             }
@@ -148,63 +175,45 @@ function stretchSearchGoalOne(collection, objectSearch) {
 
         else if (objectSearch.artist === collection[i].artist &&
             !objectSearch.yearPublished) {
-            console.log('test 3');
             for (let j = 0; j < collection.length; j++) {
 
-                if (objectSearch.track === collection[i].track[j] || !objectSearch.track) {
+                if (objectSearch.track === collection[i].track[j]) {
+
                     count++;
-                    console.log(count, ' match found. album found matching search: ', collection[i].title);
+                    stretchAlbumFound.push(collection[i]);
+                    console.log(count, ' match found. album found matching search: ', stretchAlbumFound);
+                    return collection;
+                }
+                else if (!objectSearch.track) {
+
+                    count++;
+                    stretchAlbumFound.push(collection[i]);
+                    console.log(count, ' match found. album found matching search: ', stretchAlbumFound);
                     return collection;
                 }
             }
         }
 
-        ``    else if (!objectSearch.artist &&
+        else if (!objectSearch.artist &&
             !objectSearch.yearPublished) {
-            console.log('test 4');
             for (let j = 0; j < collection.length; j++) {
 
                 if (objectSearch.track === collection[i].track[j] || !objectSearch.track) {
                     count++;
-                    console.log(count, ' match found. album found matching search: ', collection[i].title);
+                    stretchAlbumFound.push(collection[i]);
+                    console.log(count, ' match found. album found matching search: ', stretchAlbumFound);
                     return collection;
                 }
             }
         }
 
     }
-
-    console.log('No matches found. You need better taste in music! ;)')
+    console.log(count, 'no matches found. Try some new music: ', collection);
     return collection;
-}
+}//end function
 
 
-
-//         else if (objectSearch.artist === collection[i].artist &&
-//             objectSearch.track === collection[i].track) {
-//             for (let j = 0; j < collection.length; j++) {
-//                 if (objectSearch.yearPublished === '' || objectSearch.yearPublished === collection[i].yearPublished)
-//                     stretchAlbumFound.push(collection[i]);
-//                 count++;
-//                 console.log(count, 'album(s) found matching search: ', collection[i].title)
-//                 return collection;
-
-//             }
-//         }
-//         else if (objectSearch.artist === collection[i].artist &&
-//             objectSearch.track === collection[i].track) {
-//             for (let j = 0; j < collection.length; j++) {
-//                 if (objectSearch.yearPublished === '' || objectSearch.yearPublished === collection[i].yearPublished)
-//                     stretchAlbumFound.push(collection[i]);
-//                 count++;
-//                 console.log(count, 'album(s) found matching search: ', collection[i].title)
-//                 return collection;
-
-//             }
-//         }
-//     }
-// }
-
+///testing functions
 stretchSearchGoalOne(collection, stretchObjectOne);
 stretchSearchGoalOne(collection, stretchObjectTwo);
 stretchSearchGoalOne(collection, stretchObjectThree);
@@ -216,20 +225,6 @@ stretchSearchGoalOne(collection, stretchObjectFive);
 // When testing your functions, write all tests in the JavaScript file!
 
 /////////////////////
-
-// Stretch goals
-// Create a function called search. This function should:
-
-
-// Create your solution based on a search object that has these properties:
-// { artist: 'Ray Charles', year: 1957 }
-// The returned output from search should meet these requirements:
-// Return a new array of all items in the collection matching all of the search criteria.
-// If no results are found, return an empty array.
-// If there is no search object or an empty search object provided as input, then return all albums in the collection.
-// Add an array of tracks to your album objects. Each track should have a name and duration. You will need to update the functions to support this new property:
-
-// Take an input parameter for a search criteria object. 
 
 
 
@@ -261,4 +256,4 @@ function showStretchCollection(stretchCollectionArrayInput) {
 }//end showCollection
 
 // Test the showCollection function.
-// showStretchCollection(collection);
+showStretchCollection(collection);
